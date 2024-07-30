@@ -1,7 +1,5 @@
 from fastapi import APIRouter, BackgroundTasks, Request
 from typing import List
-from aws_cognito.auth import auth_required
-from aws_cognito.auth_admin import auth_admin
 
 from models.githubPR import GithubPR
 from services.webhookSecretSService import WebhookSecretSService
@@ -31,7 +29,7 @@ async def secretScan(request: Request, githubP:dict, background_tasks: Backgroun
 
 
 @router.get("/prScanSecret")
-@auth_admin()
+#@auth_admin()
 async def prScanSecret(request: Request) :
     return WebhookSecretSService().getScanData()
 

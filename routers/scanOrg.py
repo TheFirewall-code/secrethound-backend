@@ -1,8 +1,7 @@
 from fastapi import APIRouter, BackgroundTasks, Request
 from services.scanOrgService import ScanOrgService
 from services.scanOrgGetService import ScanOrgGetService
-from aws_cognito.auth import auth_required
-from aws_cognito.auth_admin import auth_admin
+
 
 router = APIRouter()
 
@@ -29,7 +28,7 @@ def background_task():
 
 
 @router.post("/scanOrg")
-@auth_admin()
+#@auth_admin()
 async def scanOrg(request: Request, background_tasks: BackgroundTasks):
     background_tasks.add_task(background_task)
     
@@ -39,7 +38,7 @@ async def scanOrg(request: Request, background_tasks: BackgroundTasks):
 
 
 @router.get("/getOrgScan")
-@auth_required()
+#@auth_required()
 async def getOrgScan(request: Request, start_index: int = 0 , end_index: int= 10, keyword: str="", sort: bool=False) :
     return ScanOrgGetService.getScanOrg(int(start_index), int(end_index), keyword, sort)
 

@@ -2,12 +2,11 @@ from fastapi import APIRouter, Request
 from typing import List
 
 from services.scanRepoService import ScanRepoService
-from aws_cognito.auth_admin import auth_admin
 
 router = APIRouter()
 
 @router.post("/scanRepo")
-@auth_admin()
+#@auth_admin()
 async def repoScan(request: Request, Repos: List[str]):
     ScanRepoService.scanRepoList(Repos)
     return {"message": "Scan done"}
