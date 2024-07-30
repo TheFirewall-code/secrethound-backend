@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+pymongo
+requests
+jose
+cognitojwt==1.3.0
